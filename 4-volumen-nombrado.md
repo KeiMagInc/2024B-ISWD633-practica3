@@ -1,14 +1,17 @@
 ## VOLUMEN NOMBRADO
 Un volumen nombrado (named volume) es un tipo de volumen gestionado por Docker que se almacena en una ubicación específica del sistema de archivos del host y se identifica mediante un nombre único. Los volúmenes nombrados no requieren que especifiques una ruta del sistema de archivos del host, y en su lugar, Docker se encarga de la gestión y el almacenamiento del volumen.
 
-
 ### Crear volumen
 ```
 docker volume create <nombre volumen>
 ```
 
 ### Crear el volumen nombrado: vol-postgres
-# COMPLETAR CON EL COMANDO
+```
+docker volume create vol-postgres
+```
+![image](https://github.com/user-attachments/assets/9731b95a-df89-4d78-aa8a-3b4fe098b636)
+
 
 ## MOUNTPOINT
 Un mountpoint se refiere al lugar en el sistema de archivos donde un dispositivo de almacenamiento se une (o monta) al sistema de archivos. Es el punto donde los archivos y directorios almacenados en ese dispositivo de almacenamiento son accesibles para el sistema operativo y las aplicaciones.
@@ -18,7 +21,7 @@ Por ejemplo, en Windows las unidades de almacenamiento (como `C:`, `D:`, etc.) a
 Cuando creas un volumen nombrado, Docker asigna un punto de montaje específico en el sistema de archivos del host para ese volumen.
 
 ### ¿Cuál es el Mountpoint de vol-postgres?
-# COMPLETAR CON LA RESPUESTA A LA PREGUNTA
+El Mountpoint de vol-postgres es /var/lib/docker/volumes/vol-postgres/_data.
 
 ### Estructura del Punto de Montaje:
 - /var/lib/docker/volumes/: Es la ubicación base donde Docker almacena todos los volúmenes en el sistema de archivos del host.
@@ -35,7 +38,10 @@ docker run -d --name <nombre contenedor> -v <nombre volumen>:<ruta contenedor> <
 ```
 
 ### Crear la red net-drupal de tipo bridge
-# COMPLETAR CON EL COMANDO
+```
+docker network create --driver bridge net-drupal
+```
+![image](https://github.com/user-attachments/assets/5d8ce50b-78fa-4355-b85b-e880faa9aaad)
 
 ### Crear un servidor postgres vinculado a la red net-drupal, completar la ruta del contenedor
 ```
@@ -51,7 +57,14 @@ docker run -d --name client-postgres --publish published=9500,target=80 -e PGADM
 ### Usar el cliente postgres para conectarse al servidor postgres, para la conexión usar el nombre del servidor en lugar de la dirección IP.
 
 ### Crear los volúmenes necesarios para drupal, esto se puede encontrar en la documentación
-### COMPLETAR CON LOS COMANDOS
+```
+docker volume create drupal-data
+docker volume create drupal-modules
+docker volume create drupal-profiles
+docker volume create drupal-themes
+```
+![image](https://github.com/user-attachments/assets/71bbdd3c-7cfd-4a52-877f-bd804233fcc7)
+
 
 ### Crear el contenedor server-drupal vinculado a la red, usar la imagen drupal, y vincularlo a los volúmenes nombrados
 ```
@@ -59,11 +72,14 @@ docker run -d --name server-drupal --publish published=9700,target=80 -v <nombre
 ```
 
 ### Ingrese al server-drupal y siga el paso a paso para la instalación.
-# COMPLETAR CON UNA CAPTURA DE PANTALLA DEL PASO 4
+![image](https://github.com/user-attachments/assets/fa5fa1c0-13b5-471b-be4d-7414b8f7b0e1)
+![image](https://github.com/user-attachments/assets/4bfb0e7e-9b72-45b8-8abd-33d54ea4500d)
+
 
 _La instalación puede tomar varios minutos, mientras espera realice un diagrama de los contenedores que ha creado en este apartado._
 
-# COMPLETAR CON EL DIAGRAMA SOLICITADO
+![NetDrupal](https://github.com/user-attachments/assets/7005deb9-506f-43f8-b7a6-f078985964cd)
+
 
 ### Eliminar un volumen específico
 ```
