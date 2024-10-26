@@ -30,7 +30,9 @@ Al ingresar al servidor de Nginx en http://localhost, Nginx mostrará el templat
 ![image](https://github.com/user-attachments/assets/c9704f22-2608-47f7-957f-65fb69e70ecc)
 
 ### Eliminar el contenedor
+```
 docker rm -f 213dc778547b
+```
 ![image](https://github.com/user-attachments/assets/5c2a346c-95f2-49d9-bc32-c2f7e75c6b75)
 
 
